@@ -1,7 +1,8 @@
 nav {
   background-color: #333;
-  padding: 1rem;
   width: 100%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 nav ul {
@@ -43,7 +44,7 @@ nav .logout-button {
   border-radius: 5px;
   font-weight: bold;
   display: inline-block;
-  transition: background-color 0.3s ease, color 0.3s ease; /* Geçiş efekti ekle */
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 nav .logout-button:hover {

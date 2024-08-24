@@ -9,12 +9,6 @@ const categories = [
   { id: 2, name: "ERKEK", image: "/images/erkek.jpg", path: "/man" },
 ];
 
-const products = [
-  { id: 1, name: "Kot Pantolon", image: "/images/pantolon.jpg" },
-  { id: 2, name: "Gömlek", image: "/images/gomlek.jpg" },
-  { id: 3, name: "Ayakkabı", image: "/images/ayakkabi.jpg" },
-];
-
 const Anasayfa = () => {
   return (
     <div>
@@ -35,13 +29,9 @@ const Anasayfa = () => {
       <div className="product-container">
         <h1>Ürünlerimiz</h1>
         <div className="products">
-          {products.map((product) => (
-            <div key={product.id} className="product-card">
-              <img src={product.image} alt={product.name} className="product-image" />
-              <h2 className="product-name">{product.name}</h2>
-              <button className="buy-button">Ürünü İncele</button>
-            </div>
-          ))}
+          <Link to="/urunler" className="view-products-button">
+            <button className="review-buttonmain">Ürünleri İncele</button>
+          </Link>
         </div>
       </div>
       <Footer />

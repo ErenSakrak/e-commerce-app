@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../components/Navbar";
-import "../css/hakkinda.css"; // CSS dosyasını unutmayın
+import "../css/hakkinda.css";
 import Footer from "../components/Footer";
 
 const Hakkinda = () => {

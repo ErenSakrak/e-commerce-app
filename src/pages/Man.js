@@ -1,12 +1,12 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 
-const Ecommerce = () => {
+const Man = () => {
   return (
     <div>
-      <Navbar />
+      <Navbar/>
     </div>
   );
 };
 
-export default Ecommerce;
+export default Man;

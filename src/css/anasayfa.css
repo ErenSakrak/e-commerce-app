@@ -1,0 +1,119 @@
+.category-container {
+    padding: 2rem;
+    background-color: #f9f9f9;
+}
+
+.category-container h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 3rem;
+}
+
+.categories {
+    display: flex;
+    justify-content: center;
+    gap: 5rem;
+    flex-wrap: wrap; /* Kartların alt satıra geçmesini sağlar */
+}
+
+.category-card {
+    position: relative;
+    width: 400px; /* Boyutu artırın */
+    height: 550px; /* Boyutu artırın */
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.category-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Resimlerin kartı tam olarak kaplamasını sağlar */
+}
+
+.category-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0); /* Arka plan tamamen şeffaf */
+    color: #000; /* Yazı rengi siyah */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease, background 0.3s ease;
+}
+
+.category-card:hover .category-overlay {
+    opacity: 1;
+    background: rgba(192, 192, 192, 0.356);
+}
+
+.product-container {
+    padding: 2rem;
+    background-color: #f9f9f9;
+}
+
+.product-container h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.product-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.product-image {
+    width: 100%;
+    height: 300px;
+    object-fit: scale-down;
+}
+
+.product-name {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+}
+
+.buy-button {
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 2.5rem;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.buy-button:hover {
+    background-color: #cc0000;
+}

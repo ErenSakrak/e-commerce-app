@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; // useNavigate importu
+import { useNavigate } from "react-router-dom";
 import "../css/auth.css";
+import { gapi } from "gapi-script";
+import LoginButton from "../components/Login";
+
+const clientId =
+  "664078810118-0pradufihpmmk8j23doprg6vmfsqmiot.apps.googleusercontent.com";
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -10,6 +15,22 @@ const AuthPage = () => {
   const [name, setName] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
+  const emailInputRef = useRef(null);
+
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: clientId,
+        scope: "",
+      });
+    }
+
+    gapi.load("client:auth2", start);
+  });
+
+  useEffect(() => {
+    emailInputRef.current.focus();
+  }, []);
 
   const toggleForm = () => {
     setIsLogin(!isLogin);
@@ -60,96 +81,101 @@ const AuthPage = () => {
   };
 
   return (
-    <div className="auth-container">
-      {isLogin ? (
-        <>
-          <h2>Giriş Yap</h2>
-          <form onSubmit={handleLogin}>
-            <div className="form-group">
-              <label htmlFor="email">Email:</label>
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email adresinizi girin"
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="password">Şifre:</label>
-              <input
-                type="password"
-                id="password"
-                placeholder="Şifrenizi girin"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                autoComplete="current-password"
-              />
-            </div>
-            {errorMessage && <p className="error">{errorMessage}</p>}
-            <button type="submit" className="auth-button">
-              Giriş Yap
-            </button>
-          </form>
-          <p className="toggle-form">
-            Henüz üye değil misiniz?
-            <button onClick={toggleForm} className="toggle-button">
-              Kayıt Ol
-            </button>
-          </p>
-        </>
-      ) : (
-        <>
-          <h2>Kayıt Ol</h2>
-          <form onSubmit={handleRegister}>
-            <div className="form-group">
-              <label htmlFor="name">Ad Soyad:</label>
-              <input
-                type="text"
-                id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Adınızı ve soyadınızı girin"
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="email">Email:</label>
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email adresinizi girin"
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="password">Şifre:</label>
-              <input
-                type="password"
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Şifrenizi girin"
-                required
-              />
-            </div>
-            {errorMessage && <p className="error">{errorMessage}</p>}
-            <button type="submit" className="auth-button">
-              Kayıt Ol
-            </button>
-          </form>
-          <p className="toggle-form">
-            Zaten üye misiniz?
-            <button onClick={toggleForm} className="toggle-button">
-              Giriş Yap
-            </button>
-          </p>
-        </>
-      )}
+    <div className="loginbox">
+      <div className="auth-container">
+        {isLogin ? (
+          <>
+            <h2>Giriş Yap</h2>
+            <form onSubmit={handleLogin}>
+              <div className="form-group">
+                <label htmlFor="email">Email:</label>
+                <input
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email adresinizi girin"
+                  required
+                  ref={emailInputRef}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="password">Şifre:</label>
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="Şifrenizi girin"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  autoComplete="current-password"
+                />
+              </div>
+              {errorMessage && <p className="error">{errorMessage}</p>}
+              <button type="submit" className="auth-button">
+                Giriş Yap
+              </button>
+            </form>
+            <p className="toggle-form">
+              Henüz üye değil misiniz?
+              <button onClick={toggleForm} className="toggle-button">
+                Kayıt Ol
+              </button>
+              <LoginButton/>
+            </p>
+          </>
+        ) : (
+          <>
+            <h2>Kayıt Ol</h2>
+            <form onSubmit={handleRegister}>
+              <div className="form-group">
+                <label htmlFor="name">Ad Soyad:</label>
+                <input
+                  type="text"
+                  id="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Adınızı ve soyadınızı girin"
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="email">Email:</label>
+                <input
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email adresinizi girin"
+                  required
+                  ref={emailInputRef}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="password">Şifre:</label>
+                <input
+                  type="password"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Şifrenizi girin"
+                  required
+                />
+              </div>
+              {errorMessage && <p className="error">{errorMessage}</p>}
+              <button type="submit" className="auth-button">
+                Kayıt Ol
+              </button>
+            </form>
+            <p className="toggle-form">
+              Zaten üye misiniz?
+              <button onClick={toggleForm} className="toggle-button">
+                Giriş Yap
+              </button>
+            </p>
+          </>
+        )}
+      </div>
     </div>
   );
 };

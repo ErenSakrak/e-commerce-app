@@ -43,8 +43,11 @@ nav .logout-button {
   border-radius: 5px;
   font-weight: bold;
   display: inline-block;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Geçiş efekti ekle */
 }
 
 nav .logout-button:hover {
   background-color: #cc0000;
+  color: #f0f0f0;
+  cursor: pointer;
 }
